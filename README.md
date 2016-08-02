@@ -1,2 +1,2 @@
-# vicky-study
+# Readme
 vicky's study code
