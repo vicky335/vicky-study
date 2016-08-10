@@ -19,7 +19,16 @@
 	</head>
 	<body>
 	
-		<input type="text"  />
+		<input type="text" class="input" placeholder="測試"  />
+		<div class="btn">
+			獲取焦點
+		</div>	
+		<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+		<script>
+			$(".btn").on("click", function(){
+				$(".input").focus();
+			});
+		</script>
 		
 	    <!-- wrap -->
 	    <section id="wrap" class="wrap">
