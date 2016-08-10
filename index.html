@@ -25,6 +25,11 @@
 		</div>	
 		<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 		<script>
+			$(".input").on("focus", function(){
+				$(this).attr("placeholder", "");
+			}).on("blur", function(){
+				$(this).attr("placeholder", "測試");
+			});
 			$(".btn").on("click", function(){
 				$(".input").focus();
 			});
