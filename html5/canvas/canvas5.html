@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <title>html5 - canvas</title>
+	    <meta charset="utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+	    <meta name="viewport" content="width=device-width, target-densitydpi=high-dpi, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <style type="text/css" media="screen">
+	    	#myCanvas {
+	    		border: 1px solid #9c9898;
+	    		background-color: #77ffcc;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="578" height="200">
+			您的瀏覽器不支持canvas，請更新或更換別的瀏覽器
+		</canvas>
+
+		<script>
+			var myCanvasObj = document.getElementById("myCanvas");
+			var contextObj = myCanvasObj.getContext("2d");
+
+			// 旋轉 保存與恢復
+			var rectWidth = 150, // 矩形寬度
+				rectHeight = 75; // 矩形高度
+			contextObj.save(); // 保存狀態1(起始座標是0，0)
+
+			// contextObj.fillStyle = '#ff0000';
+			contextObj.translate(myCanvasObj.width / 2, myCanvasObj.height / 2); // 把座標原點移到canvas的中心點
+			contextObj.save(); // 保存狀態2(座標移動到畫布中間)
+
+			contextObj.rotate(0.25 * Math.PI); // 順時針旋轉75度
+			contextObj.save(); // 保存狀態3(按中心點旋轉45度)
+
+			// contextObj.scale(1, 0.5); //座標在縱向縮小一半
+			contextObj.scale(2, 2); //矩形的尺度增加2倍
+			contextObj.fillStyle = 'blue';
+			contextObj.fillRect(-rectWidth / 2, -rectHeight / 2, rectWidth, rectHeight);
+
+			contextObj.restore(); // 恢復狀態3
+			contextObj.fillStyle = 'yellow';
+			contextObj.fillRect(-rectWidth / 2, -rectHeight / 2, rectWidth, rectHeight);
+
+			contextObj.restore(); // 恢復狀態2
+			contextObj.fillStyle = 'red';
+			contextObj.fillRect(-rectWidth / 2, -rectHeight / 2, rectWidth, rectHeight);
+
+			contextObj.restore(); // 恢復狀態3
+			contextObj.fillStyle = 'green';
+			contextObj.fillRect(-rectWidth / 2, -rectHeight / 2, rectWidth, rectHeight);
+		</script>
+	</body>
+</html>

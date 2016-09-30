@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <title>html5 - canvas</title>
+	    <meta charset="utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+	    <meta name="viewport" content="width=device-width, target-densitydpi=high-dpi, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <style type="text/css" media="screen">
+	    	#myCanvas {
+	    		border: 1px solid #9c9898;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<!-- 給canvas添加id屬性值以便調用 -->
+		<canvas id="myCanvas" width="900px" height="200px">
+			您的瀏覽器不支持canvas，請更新或更換別的瀏覽器
+		</canvas>
+		<script>
+			// 獲取canvas元素
+			var myCanvasObj = document.getElementById("myCanvas");
+			// getContext返回一個對象，提供用於在畫布上繪圖的方法和屬性
+			// getContext("2d") 对象属性和方法，可用于在画布上绘制文本、线条、矩形、圆形等等
+			var contextObj = myCanvasObj.getContext("2d");
+			// 填充顏色
+			// contextObj.fillStyle = "#ff0000";
+			// 左50 上25 長100 高50
+			// contextObj.fillRect(50, 25, 100, 50);
+
+			// 開始繪製直線
+			// 準備開始繪製
+			contextObj.beginPath();
+			// 開始繪製的起點（畫布高度的一半）
+			contextObj .moveTo(200, myCanvasObj.height / 2);
+			// 繪製的終點
+			contextObj.lineTo(myCanvasObj.width - 200, myCanvasObj.height / 2);
+			// 繪製的寬度
+			contextObj.lineWidth = 20;
+			// 繪製的顏色
+			contextObj.strokeStyle = '#ff0000';
+			// 繪製的端點樣式，默認butt
+			// butt	默认。向线条的每个末端添加平直的边缘。
+			// round	向线条的每个末端添加圆形线帽。
+			// square	向线条的每个末端添加正方形线帽。
+			contextObj.lineCap = 'round';
+			// 繪製已定義的路徑
+			contextObj.stroke();
+
+			// 開始繪製弧線
+			// 準備開始繪製
+			contextObj.beginPath();
+			contextObj.moveTo(20, 20);
+			contextObj.lineTo(100, 20);
+			contextObj.arcTo(150, 20, 150, 70 ,50);
+			contextObj.lineTo(150, 120);
+			// 繪製已定義的路徑
+			contextObj.stroke();
+
+			// 二次曲線
+			// 準備開始繪製
+			contextObj.beginPath();
+			// 起點
+			contextObj.moveTo(200, myCanvasObj.height / 2);
+			contextObj.quadraticCurveTo(288, 0, 388, 50);
+			// 曲線粗細
+			contextObj.lineWidth = 5;
+			// 曲線顏色
+			contextObj.strokeStyle = '#000';
+			// 繪製已定義的路徑
+			contextObj.stroke();
+
+			// 三次貝塞爾曲線
+			// 準備開始繪製
+			contextObj.beginPath();
+			// 起點
+			contextObj.moveTo(500, 130);
+			contextObj.bezierCurveTo(400, 10, 588, 10, 688, 170);
+			// 曲線粗細
+			contextObj.lineWidth = 5;
+			// 曲線顏色
+			contextObj.strokeStyle = 'blue';
+			// 繪製已定義的路徑
+			contextObj.stroke();
+
+			// 多線
+			// 準備開始繪製
+			contextObj.beginPath();
+			// 起點
+			contextObj.moveTo(100, 20);
+			// 第一條直線
+			contextObj.lineTo(200, 160);
+			// 二次元曲線
+			contextObj.quadraticCurveTo(230, 200, 250, 120);
+			// 貝塞爾曲線
+			contextObj.bezierCurveTo(290, -40, 300, 200, 400, 150);
+			// 第二條直線
+			contextObj.lineTo(500, 90);
+			// 曲線粗細
+			contextObj.lineWidth = 5;
+			// 曲線顏色
+			contextObj.strokeStyle = 'green';
+			// 繪製已定義的路徑
+			contextObj.stroke();
+
+		</script>
+	</body>
+</html>

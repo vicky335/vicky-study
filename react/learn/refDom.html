@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../js/build/react.js"></script>
+    <script src="../js/build/react-dom.js"></script>
+    <script src="../js/build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      // ref 属性是从组件获取真实 DOM 的节点
+      // this.refs.[refName] 就会返回这个真实的 DOM 节点
+      var MyComponent = React.createClass({
+        handleClick: function() {
+          this.refs.myTextInput.focus();
+        },
+        getInitialState: function() {
+          return {focus: false};
+        },
+        handleFocus: function() {
+          this.setState({focus: !this.state.focus});
+          // this.refs.alertsText.innerHtml = '獲取焦點';
+        },
+        handleBlur: function() {
+          this.setState({focus: !this.state.focus});
+          // this.refs.alertsText.innerHtml = '丟失焦點';
+        },
+        render: function() {
+          var text = this.state.focus ? '獲取焦點' : '丟失焦點'
+          return (
+            <div>
+              <input type="text" onBlur={this.handleBlur} onFocus={this.handleFocus} ref="myTextInput" />
+              <input type="button" value="Focus the text input" onClick={this.handleClick} />
+              <p ref="alertsText">{text}</p>
+            </div>
+          );
+        }
+      });
+
+      ReactDOM.render(
+        <MyComponent />,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>

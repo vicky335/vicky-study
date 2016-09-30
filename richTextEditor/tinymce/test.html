@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <title>richTextEditor - tinymce</title>
+	    <meta charset="utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+	    <meta name="viewport" content="width=device-width, target-densitydpi=high-dpi, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	    <style type="text/css" media="screen">
+	    	.ui_text {
+    margin: 15px auto;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.ui_text .ui_text_col {
+    display: -webkit-flex;
+    display: flex;
+}
+.ui_text .ui_text_col>.label {
+	display: inline-block;
+    vertical-align: middle;
+    color: #666;
+    width: 80px;
+    margin-right: 10px;
+    text-align: right;
+    font-weight: bold;
+}
+.ui_text .ui_text_col>.content {
+    -webkit-flex: 1;
+    flex: 1;
+}
+	    </style>
+
+	</head>
+	<body>
+		<form method="post">
+			<div class="ui_text">
+				<div class="ui_text_col">
+					<label for="mytextarea" class="label">內文</label>
+					<div class="content">
+						<textarea id="mytextarea"></textarea>
+					</div>
+				</div>
+			</div>
+		</form>
+		<script src="js/tinymce/tinymce.min.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			tinymce.init({
+				// 對象選擇，可以是元素、id、class
+				selector: '#mytextarea',
+				// 語言包
+				language: 'zh_TW',
+				// 隱藏菜單欄
+				menubar: false,
+				// 編輯器高度
+				height: '300',
+				// 插件定義
+				plugins: [
+			        'advlist autolink link image lists charmap print hr anchor pagebreak spellchecker',
+			        'searchreplace visualblocks code fullscreen media nonbreaking',
+			        'table directionality emoticons template textcolor paste textcolor colorpicker textpattern imagetools'
+				],
+			    // 工具欄
+			    toolbar1: 'insertfile undo redo | formatselect | bullist numlist | link unlink | image media | fullscreen | visualblocks | code',
+			    toolbar2: 'fontsizeselect | forecolor backcolor | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | outdent indent | removeformat',
+			    toolbar_items_size: 'small',
+			    // block_formats: 'Paragraph=p;Heading 1=h1;Heading 2=h2;Heading 3=h3;Heading 4=h4;Heading 5=h5;Heading 6=h6;',
+				style_formats: [
+				    { title: 'Headers', items: [
+				      { title: 'h1', block: 'h1' },
+				      { title: 'h2', block: 'h2' },
+				      { title: 'h3', block: 'h3' },
+				      { title: 'h4', block: 'h4' },
+				      { title: 'h5', block: 'h5' },
+				      { title: 'h6', block: 'h6' }
+				    ] },
+
+				    { title: 'Blocks', items: [
+				      { title: 'p', block: 'p' },
+				      { title: 'div', block: 'div' },
+				      { title: 'pre', block: 'pre' }
+				    ] },
+
+				    { title: 'Containers', items: [
+				      { title: 'section', block: 'section', wrapper: true, merge_siblings: false },
+				      { title: 'article', block: 'article', wrapper: true, merge_siblings: false },
+				      { title: 'blockquote', block: 'blockquote', wrapper: true },
+				      { title: 'hgroup', block: 'hgroup', wrapper: true },
+				      { title: 'aside', block: 'aside', wrapper: true },
+				      { title: 'figure', block: 'figure', wrapper: true }
+				    ] },
+
+				    // 強大的圖片選項
+				 //    {title: 'Image Left', selector: 'img', styles: {
+					//     'float' : 'left',
+					//     'margin': '0 10px 0 10px'
+					// }},
+					// {title: 'Image Right', selector: 'img', styles: {
+					//     'float' : 'right',
+					//     'margin': '0 10px 0 10px'
+					// }}
+				],
+			    // 使用視覺塊插件
+			    visualblocks_default_state: true,
+			    end_container_on_empty_block: true,
+
+			    // 插入編輯圖片功能設置
+			    // 圖片字幕，開啟後當用戶選擇‘標題’將以figure元素顯示
+			    // image_caption: true,
+			    // 顯示“高級”選項，能自定義樣式、間距、邊框
+			    // image_advtab: true,
+			    // 禁用圖片描述
+			    image_description: false,
+			    // 禁用圖片尺寸
+			    image_dimensions: false,
+			    // 使用圖片標題
+			    // image_title: true,
+			    // 圖片工具
+			    // imagetools_toolbar: "rotateleft rotateright | flipv fliph | editimage imageoptions"
+
+			});
+		</script>
+	</body>
+</html>

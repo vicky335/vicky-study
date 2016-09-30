@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <title>html5 - canvas</title>
+	    <meta charset="utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+	    <meta name="viewport" content="width=device-width, target-densitydpi=high-dpi, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <style type="text/css" media="screen">
+	    	#myCanvas,
+	    	#myCanvas2 {
+	    		border: 1px solid #9c9898;
+	    		background-color: #77ffcc;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<p>沒有裁切前：</p>
+		<canvas id="myCanvas" width="578" height="200">
+			您的瀏覽器不支持canvas，請更新或更換別的瀏覽器
+		</canvas>
+
+		<p>裁切後：</p>
+		<canvas id="myCanvas2" width="578" height="200">
+			您的瀏覽器不支持canvas，請更新或更換別的瀏覽器
+		</canvas>
+
+		<script>
+			var myCanvasObj = document.getElementById("myCanvas");
+			var contextObj = myCanvasObj.getContext("2d");
+
+			// 圖形的組合
+			contextObj.rect(50, 20, 100, 100); // 繪製矩形
+			contextObj.stroke();
+			contextObj.rect(0, 0, 150, 150); // 繪製矩形
+			contextObj.fillStyle = 'blue';
+			contextObj.fill();
+
+			var myCanvasObj2 = document.getElementById("myCanvas2");
+			var contextObj2 = myCanvasObj2.getContext("2d");
+
+			// 圖形的組合
+			contextObj2.rect(50, 20, 100, 100); // 繪製矩形
+			contextObj2.stroke();
+			contextObj2.clip();
+			contextObj2.rect(0, 0, 150, 150); // 繪製矩形
+			contextObj2.fillStyle = 'blue';
+			contextObj2.fill();
+		</script>
+	</body>
+</html>

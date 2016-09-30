@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <title>html5 - canvas</title>
+	    <meta charset="utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+	    <meta name="viewport" content="width=device-width, target-densitydpi=high-dpi, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <style type="text/css" media="screen">
+	    	#myCanvas {
+	    		border: 1px solid #9c9898;
+	    		background-color: #77ffcc;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<p>圖案的使用</p>
+		<p>
+			<img id="butterfly" src="../../images/QQ截图20141208141611.png" width=100 />
+		</p>
+		<p>
+			<button onclick="draw('repeat');">repeat</button>
+			<button onclick="draw('repeat-x');">repeat-x</button>
+			<button onclick="draw('repeat-y');">repeat-y</button>
+			<button onclick="draw('no-repeat');">no-repeat</button>
+		</p>
+		<!-- 給canvas添加id屬性值以便調用 -->
+		<canvas id="myCanvas" width="1000px" height="500px">
+			您的瀏覽器不支持canvas，請更新或更換別的瀏覽器
+		</canvas>
+		<script>
+
+			// 圖案填充
+			function draw(type){
+				var myCanvasObj = document.getElementById("myCanvas"),
+					contextObj = myCanvasObj.getContext("2d");
+				contextObj.clearRect(0, 0, myCanvasObj.width, myCanvasObj.height); // 清除畫布
+				var imgObj = document.getElementById("butterfly"),
+					pat = contextObj.createPattern(imgObj, type);
+				contextObj.fillStyle = pat;
+				contextObj.fill();
+				contextObj.rect(0, 0, 1000, 500);
+			}
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <title>html5 - canvas</title>
+	    <meta charset="utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+	    <meta name="viewport" content="width=device-width, target-densitydpi=high-dpi, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <style type="text/css" media="screen">
+	    	#myCanvas {
+	    		border: 1px solid #9c9898;
+	    		background-color: #77ffcc;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="578" height="200">
+			您的瀏覽器不支持canvas，請更新或更換別的瀏覽器
+		</canvas>
+
+		<script>
+			var myCanvasObj = document.getElementById("myCanvas");
+			var contextObj = myCanvasObj.getContext("2d");
+
+			// 繪製圖片
+			// var imageObj = new Image();
+			// imageObj.src = '../../images/QQ截图20141208141611.png';
+			// imageObj.onload = function(){
+			// 	// 原始圖片的大小
+			// 	contextObj.drawImage(imageObj, 10, 10);
+			// 	// 指定繪製圖片的大小
+			// 	contextObj.drawImage(imageObj, 10, 10, 100, 100); // 圖像，x距離，y距離，寬，高
+			// 	// 截取圖像
+			// 	contextObj.drawImage(imageObj, 50, 40, 100, 100, 50, 50, 200, 200); // 圖像，x距離，y距離，寬，高，裁剪圖像x座標，裁剪圖像y座標
+
+			// 繪製文本
+			// 文本位置
+			// var textX = myCanvasObj.width / 2,
+			// 	textY = myCanvasObj.height / 2;
+
+			// 繪製實心體
+			// contextObj.font = 'italic 40px Arial';
+			// contextObj.fillStyle = '#ff0000';
+			// contextObj.fillText('Hello!', textX, textY);
+
+			// 繪製空心體
+			// contextObj.font = 'italic 40px Arial';
+			// contextObj.strokeStyle = '#0000ff';
+			// contextObj.lineWidth = 2;
+			// contextObj.strokeText('Hello!', textX, textY);
+
+			// 文本對齊
+			// contextObj.moveTo(myCanvasObj.width / 2, 0);
+			// contextObj.lineTo(myCanvasObj.width / 2, myCanvasObj.height);
+			// contextObj.strokeStyle = 5;
+			// contextObj.strokeStyle = '#ff0000';
+			// contextObj.stroke();
+			// contextObj.font = 'italic 40px Arial';
+			// contextObj.strokeStyle = '#0000ff';
+			// contextObj.lineWidth = 2;
+			// contextObj.textAlign = 'center'; // 默認left
+			// contextObj.strokeText('Hello!', textX, textY);
+
+			// 文本測量
+			// var metruse = contextObj.measureText('world'),
+			// 	width = metruse.width;
+			// contextObj.font = '30px Arial';
+			// contextObj.textAlign = 'center';
+			// contextObj.fillStyle = '#555';
+			// contextObj.fillText('('+ width +')px wide', textX, textY / 2);
+
+			// 文本換行
+			var text = 'The above named() stream will add a .named property to the vinyl files passing through. The webpack() stream will read those as entry points and even group entry points with common names together.';
+			var maxWidth = 400, // 每行最大的長度，超出就換行顯示
+				lineHeight = 25,
+				textX1 = (myCanvasObj.width - maxWidth) / 2,
+				textY1 = 60; // 起點
+			contextObj.font = '16px Arial';
+			contextObj.fillStyle = '#333';
+			wrapText(contextObj, text, textX1, textY1, maxWidth, lineHeight);
+
+			function wrapText(contextObj, text, x, y, maxWidth, lineHeight){
+				var words = text.split(' '); // 以空格把字符串分割並保存到數組中
+				var line = '';
+				// 循環數組，取出數組中的字符串
+				for (var n = 0; n < words.length; n++){
+					var textLine = line + words[n] + ' ',
+						metrics = contextObj.measureText(textLine),
+						textWidth = metrics.width; // 測量字符串的寬度
+					if(textWidth > maxWidth){
+						line = words[n] + ' '; // 重新給line賦值，繪製下一行
+						y += lineHeight; // 當前y座標要加上行高，表示在下一行繪製，避免重複
+					}else{
+						line = textLine;
+					}
+					contextObj.fillText(line, x, y);
+				}
+			}
+		</script>
+	</body>
+</html>

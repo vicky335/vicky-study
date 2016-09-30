@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <title>html5 - canvas</title>
+	    <meta charset="utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+	    <meta name="viewport" content="width=device-width, target-densitydpi=high-dpi, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <style type="text/css" media="screen">
+	    	#myCanvas {
+	    		border: 1px solid #9c9898;
+	    		background-color: #77ffcc;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="578" height="200">
+			您的瀏覽器不支持canvas，請更新或更換別的瀏覽器
+		</canvas>
+
+		<script>
+			var myCanvasObj = document.getElementById("myCanvas");
+			var contextObj = myCanvasObj.getContext("2d");
+
+			// 圖形的組合
+			contextObj.beginPath();
+			contextObj.rect(200, 10, 100, 100); // 繪製矩形
+			contextObj.fillStyle = 'blue';
+			contextObj.fill();
+
+			// contextObj.globalCompositeOperation = 'source-over'; // 新圖型覆蓋在原圖上（默認）
+			// contextObj.globalCompositeOperation = 'source-atop'; // 只繪製原圖，且新圖只繪製重疊的部分，其餘部分隱藏
+			// contextObj.globalCompositeOperation = 'source-in'; // 只繪製新圖與原圖重疊的部分，其餘部分隱藏
+			// contextObj.globalCompositeOperation = 'source-out'; // 只繪製新圖與原圖不重疊的部分，其餘部分隱藏
+			// contextObj.globalCompositeOperation = 'destination-atop'; // 只繪製新圖，且原圖只繪製重疊的部分，其餘部分隱藏
+			// contextObj.globalCompositeOperation = 'destination-in'; // 只繪製原圖與新圖重疊的部分，其餘部分隱藏
+			// contextObj.globalCompositeOperation = 'destination-out'; // 只繪製原圖，且原圖與新圖重疊的部分和新圖都隱藏
+			// contextObj.globalCompositeOperation = 'destination-over'; // 原圖覆蓋在新圖上
+			// contextObj.globalCompositeOperation = 'lighter'; // 兩圖重複的部分用其他顏色代替
+			// contextObj.globalCompositeOperation = 'xop'; // 兩圖重疊部分隱藏
+			contextObj.globalCompositeOperation = 'copy'; // 只顯示新圖
+
+			contextObj.arc(320, 120, 60, 0, 2 * Math.PI, false) // 繪製圓形
+			contextObj.fillStyle = 'red';
+			contextObj.fill();
+		</script>
+	</body>
+</html>

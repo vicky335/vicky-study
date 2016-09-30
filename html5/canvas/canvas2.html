@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <title>html5 - canvas</title>
+	    <meta charset="utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+	    <meta name="viewport" content="width=device-width, target-densitydpi=high-dpi, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <style type="text/css" media="screen">
+	    	#myCanvas {
+	    		border: 1px solid #9c9898;
+	    		background-color: #77ffcc;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<!-- 給canvas添加id屬性值以便調用 -->
+		<canvas id="myCanvas" width="700px" height="200px">
+			您的瀏覽器不支持canvas，請更新或更換別的瀏覽器
+		</canvas>
+		<script>
+			// 獲取canvas元素
+			var myCanvasObj = document.getElementById("myCanvas");
+			// getContext返回一個對象，提供用於在畫布上繪圖的方法和屬性
+			// getContext("2d") 对象属性和方法，可用于在画布上绘制文本、线条、矩形、圆形等等
+			var contextObj = myCanvasObj.getContext("2d");
+
+			// 線的寬度
+			contextObj.lineWidth = 25;
+
+			// miter樣式(左邊)
+			contextObj.beginPath();
+			contextObj.moveTo(99, 150);
+			contextObj.lineTo(149, 50);
+			contextObj.lineTo(199, 150);
+			contextObj.lineJoin = 'miter';
+			contextObj.stroke();
+
+			// round樣式(中間)
+			contextObj.beginPath();
+			contextObj.moveTo(239, 150);
+			contextObj.lineTo(289, 50);
+			contextObj.lineTo(339, 150);
+			contextObj.lineJoin = 'round';
+			contextObj.stroke();
+
+			// bevel樣式(右邊)
+			contextObj.beginPath();
+			contextObj.moveTo(379, 150);
+			contextObj.lineTo(429, 50);
+			contextObj.lineTo(479, 150);
+			contextObj.lineJoin = 'bevel';
+			contextObj.stroke();
+
+			// 矩形
+			contextObj.beginPath();
+			contextObj.rect(10, 50, 200, 100);
+			contextObj.lineWidth = 5;
+			contextObj.strokeStyle = 'blue';
+			contextObj.stroke();
+
+			// 圓
+			contextObj.beginPath();
+			// 圓心座標
+			var conterX = myCanvasObj.width / 2,
+				conterY = myCanvasObj.height / 2,
+				radius = 80; // 半徑
+			contextObj.arc(conterX, conterY, radius, 0, 2 * Math.PI, false); // 順時針是false，逆時針是true
+			contextObj.lineWidth = 5;
+			contextObj.strokeStyle = 'green';
+			contextObj.fillStyle = 'blue'; // 圖形的填充顏色
+			contextObj.fill(); // 實現填充
+			// 陰影
+			contextObj.shadowColor = '#000000'; // 陰影顏色
+			contextObj.shadowBlur = 20; // 陰影模糊度
+			contextObj.shadowOffsetX = 10; // 水平距離
+			contextObj.shadowOffsetY = 10; // 垂直距離
+			// contextObj.globalAlpha = 0.5; // 透明度
+			contextObj.stroke();
+
+			// 線性漸變
+			var clg = contextObj.createLinearGradient(0, 0, 200, 0); // 线性渐变 (起點X，起點y，終點x，終點y)
+			var clg = contextObj.createLinearGradient(0, 0, 200, 200); // 45度渐变 (起點X，起點y，終點x，終點y)
+			var clg = contextObj.createLinearGradient(0, 0, 0, 200); // 90度渐变 (起點X，起點y，終點x，終點y)
+			clg.addColorStop(0, '#ff0000'); // 起點顏色
+			clg.addColorStop(0.5, '#00ff00'); // 中間顏色
+			clg.addColorStop(1, '#0000ff'); // 終點顏色
+			contextObj.strokeStyle = contextObj.fillStyle = clg;
+			contextObj.fillRect(10, 10, 200, 200); // 繪製矩形
+
+			// 徑向漸變
+			var crg = contextObj.createRadialGradient(325, 100, 20, 325, 100, 80); // (起點X，起點y，半徑r1，終點x，終點y，半徑r2)
+			crg.addColorStop(0, '#ffffff'); // 開始顏色
+			crg.addColorStop(0.75, '#ff0000'); // 3/4時的顏色
+			crg.addColorStop(1, '#000000'); // 其他填充顏色
+			contextObj.strokeStyle = contextObj.fillStyle = crg;
+			contextObj.fillRect(230, 10, 200, 200); // 繪製矩形
+		</script>
+	</body>
+</html>

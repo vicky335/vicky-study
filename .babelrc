@@ -1,0 +1,27 @@
+{
+	// 設定轉碼規則
+	/**
+	 * 安装babel-loader
+	 * $ npm install --save-dev babel-loader
+	 * $ npm install --save-dev babel-core
+	 * # ES2015转码规则
+	 * $ npm install --save-dev babel-preset-es2015  //支持ES2015
+	 * # react转码规则
+	 * $ npm install --save-dev babel-preset-react //支持jsx
+	 * # ES7不同阶段语法提案的转码规则（共有4个阶段），选装一个
+	 * $ npm install --save-dev babel-preset-stage-0 //支持ES7
+	 * $ npm install --save-dev babel-preset-stage-1
+	 * $ npm install --save-dev babel-preset-stage-2
+	 * $ npm install --save-dev babel-preset-stage-3
+	 * $ npm install --save-dev babel-polyfill //Polyfilla是一个英国产品,在美国称之为Spackling Paste(译者注:刮墙的,在中国称为腻子).记住这一点就行:把旧的浏览器想象成为一面有了裂缝的墙.这些[polyfills]会帮助我们把这面墙的裂缝抹平,还我们一个更好的光滑的墙壁(浏览器)
+	 * $ npm install --save-dev babel-runtime
+	 * $ npm install --save-dev babel-plugin-transform-runtime
+	 */
+	"presets": [
+		"es2015",
+		// "stage-0",
+		"react"
+	],
+	// 
+	"plugins": []
+}
