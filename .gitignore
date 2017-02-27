@@ -3,6 +3,8 @@
 # project
 .project
 Thumbs.db
+.DS_store
+desktop.ini
 
 # sass
 .sass-cache/
